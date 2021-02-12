@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1090754121030",
+    "project_id": "hilib-ecb34",
+    "storage_bucket": "hilib-ecb34.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1090754121030:android:b6ebd4643f3fcffcc66947",
+        "android_client_info": {
+          "package_name": "com.eaglez.hilib"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1090754121030-hp6rsj2dpum1f6jq2au349t953ijp3fs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdyfXx08jNWY7lIvQ_bU_SiHYnDeXeJYY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1090754121030-hp6rsj2dpum1f6jq2au349t953ijp3fs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

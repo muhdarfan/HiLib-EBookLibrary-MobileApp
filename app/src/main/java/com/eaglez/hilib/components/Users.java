@@ -1,37 +1,26 @@
 package com.eaglez.hilib.components;
 
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.ValueEventListener;
-
 public class Users {
-    private FirebaseUser mUser;
-    private String username, fullname, email, phone;
+    private String matric, username, fullname, email, phone, imageURL;
 
-    public Users() {}
+    public Users() {
 
-    public Users(FirebaseUser firebaseAuth) {
-        if (firebaseAuth == null)
-            return;
-
-        this.mUser = firebaseAuth;
-        Core.getDatabase().getReference("users").child(this.mUser.getUid()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (task.isSuccessful()) {
-                    task.getResult().getValue(this.getClass());
-                }
-            }
-        });
     }
 
-    public FirebaseUser getmUser() {
-        return mUser;
+    public Users(String username, String email, String matric, String name, String phone) {
+        this.username = username;
+        this.fullname = name;
+        this.email = email;
+        this.phone = phone;
+        this.matric = matric;
+    }
+
+    public String getMatric() {
+        return matric;
+    }
+
+    public void setMatric(String matric) {
+        this.matric = matric;
     }
 
     public String getUsername() {
@@ -64,5 +53,13 @@ public class Users {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 }

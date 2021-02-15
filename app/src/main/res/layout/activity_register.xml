@@ -57,7 +57,9 @@
                     android:id="@+id/register_et_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email" />
+                    android:hint="Email"
+                    android:inputType="textWebEmailAddress|textEmailAddress"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -75,7 +77,9 @@
                     android:id="@+id/register_et_matric"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Matric Number" />
+                    android:hint="Matric Number"
+                    android:inputType="textShortMessage"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -93,7 +97,9 @@
                     android:id="@+id/register_et_full_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Full Name" />
+                    android:hint="Full Name"
+                    android:inputType="textPersonName"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -111,7 +117,9 @@
                     android:id="@+id/register_et_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Phone Number" />
+                    android:hint="Phone Number"
+                    android:inputType="phone"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <RelativeLayout
@@ -169,7 +177,9 @@
                     android:id="@+id/register_et_username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Username" />
+                    android:hint="Username"
+                    android:inputType="textShortMessage"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -187,7 +197,9 @@
                     android:id="@+id/register_et_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Password" />
+                    android:hint="Password"
+                    android:inputType="textWebPassword"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button

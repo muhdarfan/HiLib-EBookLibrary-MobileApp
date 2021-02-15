@@ -4,16 +4,23 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ProfileViewModel extends ViewModel {
+import com.eaglez.hilib.components.Core;
+import com.eaglez.hilib.components.Users;
 
-    private MutableLiveData<String> mText;
+public class ProfileViewModel extends ViewModel {
+    private MutableLiveData<Users> mUser;
 
     public ProfileViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is notifications fragment");
+        mUser = new MutableLiveData<>();
+
+        update();
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public MutableLiveData<Users> getmUser() {
+        return mUser;
+    }
+
+    public void update() {
+        mUser.setValue(Core.getUserData());
     }
 }

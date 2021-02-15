@@ -20,13 +20,52 @@
 
     <fragment
         android:id="@+id/navigation_library"
-        android:name="com.eaglez.hilib.ui.dashboard.DashboardFragment"
+        android:name="com.eaglez.hilib.ui.library.LibraryFragment"
         android:label="@string/title_library"
-        tools:layout="@layout/fragment_library" />
+        tools:layout="@layout/fragment_library" >
+        <action
+            android:id="@+id/action_navigation_library_to_materialFileListFragment"
+            app:destination="@id/navigation_library_material" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.eaglez.hilib.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_navigation_profile_to_navigation_profile_edit2"
+            app:destination="@id/navigation_profile_edit" />
+        <action
+            android:id="@+id/action_navigation_profile_to_historyFragment"
+            app:destination="@id/navigation_profile_borrow_history" />
+        <action
+            android:id="@+id/action_navigation_profile_to_aboutActivity"
+            app:destination="@id/aboutActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_profile_edit"
+        android:name="com.eaglez.hilib.ui.profile.EditProfileFragment"
+        android:label="Profile Information"
+        tools:layout="@layout/fragment_edit_profile" />
+    <fragment
+        android:id="@+id/navigation_library_material"
+        android:name="com.eaglez.hilib.ui.library.MaterialFileListFragment"
+        android:label="{title}"
+        tools:layout="@layout/material_file_list_fragment">
+        <argument
+            android:name="title"
+            android:defaultValue="Others"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_profile_borrow_history"
+        android:name="com.eaglez.hilib.ui.history.HistoryFragment"
+        android:label="Borrowing History"
+        tools:layout="@layout/fragment_item_list" />
+    <activity
+        android:id="@+id/aboutActivity"
+        android:name="com.eaglez.hilib.ui.AboutActivity"
+        android:label="activity_about"
+        tools:layout="@layout/activity_about" />
 </navigation>

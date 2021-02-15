@@ -2,12 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.library.LibraryFragment">
+    tools:context=".ui.library.MaterialFileListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/library_rv_main"
+        android:id="@+id/rv_material_file_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -15,5 +16,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layoutManager="LinearLayoutManager"
-        tools:listitem="@layout/card_library_category_list"/>
+        tools:listitem="@layout/card_library_file_list"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

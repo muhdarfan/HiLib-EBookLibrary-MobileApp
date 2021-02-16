@@ -1,37 +1,24 @@
 package com.eaglez.hilib.ui.library;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.eaglez.hilib.R;
-import com.eaglez.hilib.adapter.MaterialAdapter;
 import com.eaglez.hilib.adapter.MaterialCategoryAdapter;
 import com.eaglez.hilib.components.Core;
-import com.eaglez.hilib.components.material.MyMaterial;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.ArrayList;
 
 public class LibraryFragment extends Fragment implements MaterialCategoryAdapter.OnMaterialCategorySelectedListener {
     private RecyclerView rvMaterial;

@@ -3,20 +3,15 @@ package com.eaglez.hilib.components;
 import android.content.Context;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
 import com.eaglez.hilib.components.material.MyMaterial;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
@@ -30,6 +25,7 @@ public class Core {
     private static FirebaseDatabase database;
     private static FirebaseFirestore store;
     private static FirebaseUser user;
+    private static StorageReference storage;
     private static Users UserData = null;
     private static ArrayList<MyMaterial> UserMaterial;
 
@@ -38,6 +34,7 @@ public class Core {
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         store = FirebaseFirestore.getInstance();
+        storage = FirebaseStorage.getInstance().getReference();
         user = auth.getCurrentUser();
         UserMaterial = new ArrayList<>();
 
@@ -49,7 +46,6 @@ public class Core {
                     if (task.isSuccessful()) {
                         UserData = task.getResult().getValue(Users.class);
                     } else {
-                        Log.v("asd", "apa lanxiao");
                     }
                 });
             }
@@ -101,8 +97,21 @@ public class Core {
         return UserMaterial;
     }
 
+    public static StorageReference getStorage() {
+        return storage;
+    }
+
+    public static void setStorage(StorageReference storage) {
+        Core.storage = storage;
+    }
+
     public static void setUserMaterial(ArrayList<MyMaterial> userMaterial) {
         UserMaterial = userMaterial;
+    }
+
+    public static boolean isValid(String email) {
+        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        return email.matches(regex);
     }
 
     public static MyMaterial getSubscribedMaterial(String materialID) {

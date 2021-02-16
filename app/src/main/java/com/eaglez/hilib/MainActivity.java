@@ -1,10 +1,6 @@
 package com.eaglez.hilib;
 
-import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -14,8 +10,6 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.eaglez.hilib.components.Core;
 import com.eaglez.hilib.components.material.MyMaterial;
-import com.eaglez.hilib.ui.account.LoginActivity;
-import com.eaglez.hilib.ui.library.MaterialFileListFragment;
 import com.eaglez.hilib.ui.library.MaterialFileListModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -78,8 +72,6 @@ public class MainActivity extends AppCompatActivity {
 
         Core.issuedMaterial.remove();
     }
-
-
 
     @Override
     public boolean onSupportNavigateUp() {

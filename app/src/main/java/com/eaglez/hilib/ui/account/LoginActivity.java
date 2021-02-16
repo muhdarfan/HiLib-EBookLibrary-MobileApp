@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -53,12 +52,12 @@ public class LoginActivity extends AppCompatActivity {
             String email = etUser.getText().toString().trim(), password = etPass.getText().toString().trim();
 
             if (TextUtils.isEmpty(email)) {
-                etUser.setError("");
+                etUser.setError("Please enter a valid email address.");
                 return;
             }
 
             if (TextUtils.isEmpty(password)) {
-                etPass.setError("");
+                etPass.setError("Please enter a password.");
                 return;
             }
 
@@ -66,11 +65,8 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         // Google Sign-In
-        findViewById(R.id.login_btn_google_login).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent signInIntent = Core.mGoogleSignInClient.getSignInIntent();
-            }
+        findViewById(R.id.login_btn_google_login).setOnClickListener(v -> {
+            Intent signInIntent = Core.mGoogleSignInClient.getSignInIntent();
         });
 
         btnRegister.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, RegisterActivity.class)));

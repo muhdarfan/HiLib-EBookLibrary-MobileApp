@@ -1,7 +1,6 @@
 package com.eaglez.hilib.adapter;
 
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +22,6 @@ import java.util.Date;
 
 public class MaterialAdapter extends FirestoreAdapter<MaterialAdapter.MaterialViewHolder> {
     public interface OnMaterialSelectedListener {
-        //void OnMaterialSelected(DocumentSnapshot material);
         void OnMaterialSelected(DocumentSnapshot material, MyMaterial mFile);
     }
 
@@ -62,6 +60,7 @@ public class MaterialAdapter extends FirestoreAdapter<MaterialAdapter.MaterialVi
 
             SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM YYYY");
             tvName.setText(file.getName());
+            tvViewBtn.setEnabled(true);
 
             if (mFile != null) {
                 Calendar c = Calendar.getInstance();
@@ -74,6 +73,7 @@ public class MaterialAdapter extends FirestoreAdapter<MaterialAdapter.MaterialVi
                 } else {
                     tvDesc.setText("This material will be accessible until " + sdf.format(c.getTime()) + ".");
                     tvViewBtn.setText("View PDF");
+
                 }
             } else {
                 tvDesc.setText(R.string.material_file_desc);

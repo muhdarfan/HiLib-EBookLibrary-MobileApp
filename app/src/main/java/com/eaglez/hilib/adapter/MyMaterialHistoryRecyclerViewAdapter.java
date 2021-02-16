@@ -1,12 +1,12 @@
 package com.eaglez.hilib.adapter;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.eaglez.hilib.R;
 import com.eaglez.hilib.components.material.MyMaterial;

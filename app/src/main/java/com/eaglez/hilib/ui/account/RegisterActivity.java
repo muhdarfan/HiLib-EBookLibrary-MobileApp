@@ -3,7 +3,6 @@ package com.eaglez.hilib.ui.account;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -15,7 +14,6 @@ import com.eaglez.hilib.MainActivity;
 import com.eaglez.hilib.R;
 import com.eaglez.hilib.components.Core;
 import com.eaglez.hilib.components.Users;
-import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText etEmail, etMatric, etFullName, etPhone, etUsername, etPass;
@@ -38,21 +36,18 @@ public class RegisterActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.register_tv_login);
 
         btnLogin.setOnClickListener(v -> onBackPressed());
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String username, pass, email, matric, name, phone;
+        btnRegister.setOnClickListener(v -> {
+            String username, pass, email, matric, name, phone;
 
-                username = etUsername.getText().toString().trim();
-                pass = etPass.getText().toString().trim();
-                email = etEmail.getText().toString().trim();
-                matric = etMatric.getText().toString().trim();
-                name = etFullName.getText().toString().trim();
-                phone = etPhone.getText().toString().trim();
+            username = etUsername.getText().toString().trim();
+            pass = etPass.getText().toString().trim();
+            email = etEmail.getText().toString().trim();
+            matric = etMatric.getText().toString().trim();
+            name = etFullName.getText().toString().trim();
+            phone = etPhone.getText().toString().trim();
 
-                if(ValidateForm(username, pass, email, matric, name, phone)) {
-                    RegisterAccount(username, pass, email, matric, name, phone);
-                }
+            if(ValidateForm(username, pass, email, matric, name, phone)) {
+                RegisterAccount(username, pass, email, matric, name, phone);
             }
         });
     }
@@ -72,32 +67,32 @@ public class RegisterActivity extends AppCompatActivity {
 
     private boolean ValidateForm(String username, String pass, String email, String matric, String name, String phone) {
         if (TextUtils.isEmpty(username)) {
-            etUsername.setError("");
+            etUsername.setError("Please enter a valid username.");
             return false;
         }
 
         if (TextUtils.isEmpty(pass)) {
-            etPass.setError("");
+            etPass.setError("Please enter a password.");
             return false;
         }
 
-        if (TextUtils.isEmpty(email)) {
-            etEmail.setError("");
+        if (TextUtils.isEmpty(email) && !Core.isValid(email)) {
+            etEmail.setError("Please enter a valid email address.");
             return false;
         }
 
         if (TextUtils.isEmpty(matric)) {
-            etMatric.setError("");
+            etMatric.setError("Please enter your matric number.");
             return false;
         }
 
         if (TextUtils.isEmpty(name)) {
-            etFullName.setError("");
+            etFullName.setError("Please enter a name.");
             return false;
         }
 
         if (TextUtils.isEmpty(phone)) {
-            etPhone.setError("");
+            etPhone.setError("Please enter a phone number.");
             return false;
         }
 

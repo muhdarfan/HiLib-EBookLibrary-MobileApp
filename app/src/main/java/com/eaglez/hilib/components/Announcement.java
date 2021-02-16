@@ -4,11 +4,11 @@ import com.google.firebase.firestore.ServerTimestamp;
 
 import java.util.Date;
 
-public class News {
+public class Announcement {
     private String title, content, author;
     private @ServerTimestamp Date date_created;
 
-    public News() {}
+    public Announcement() {}
 
     public String getTitle() {
         return title;

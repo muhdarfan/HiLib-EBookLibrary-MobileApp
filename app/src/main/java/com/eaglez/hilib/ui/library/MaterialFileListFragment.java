@@ -1,37 +1,37 @@
 package com.eaglez.hilib.ui.library;
 
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.eaglez.hilib.MainActivity;
 import com.eaglez.hilib.R;
 import com.eaglez.hilib.adapter.MaterialAdapter;
 import com.eaglez.hilib.components.Core;
+import com.eaglez.hilib.components.Notification;
 import com.eaglez.hilib.components.material.MaterialFile;
 import com.eaglez.hilib.components.material.MyMaterial;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 import com.rajat.pdfviewer.PdfViewerActivity;
 
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class MaterialFileListFragment extends Fragment implements MaterialAdapter.OnMaterialSelectedListener {
     private RecyclerView rvFileList;
@@ -110,7 +110,26 @@ public class MaterialFileListFragment extends Fragment implements MaterialAdapte
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             // Add to calendar
-                            Core.getStore().collection("issued").add(new MyMaterial(Core.getUser().getUid(), material.getString("name"), material.getReference()));
+                            Core.getStore().collection("issued").add(new MyMaterial(Core.getUser().getUid(), material.getString("name"), material.getReference())).addOnCompleteListener(task -> {
+                                if (task.isSuccessful()) {
+                                    Calendar c = Calendar.getInstance();
+                                    //c.add(Calendar.SECOND, 5);
+                                    c.add(Calendar.DAY_OF_MONTH, 6);
+
+                                    Intent intent = new Intent(getActivity(), Notification.class);
+                                    intent.putExtra("notificationId", 1);
+                                    intent.putExtra("message", file.getName() + " will be expired on " + new SimpleDateFormat("dd MMMM yyyy").format(c.getTime()));
+
+                                    PendingIntent alarmIntent = PendingIntent.getBroadcast(getActivity(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+                                    AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+
+                                    alarmManager.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), alarmIntent);
+
+                                    Toast.makeText(getContext(), "Thank you for borrowing from us.", Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(getContext(), "An error has been occurred.", Toast.LENGTH_LONG).show();
+                                }
+                            });
                             dialog.dismiss();
                         }
                     })

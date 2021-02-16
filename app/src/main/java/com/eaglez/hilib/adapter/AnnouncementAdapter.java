@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.eaglez.hilib.R;
-import com.eaglez.hilib.components.News;
+import com.eaglez.hilib.components.Announcement;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.Query;
 
@@ -31,7 +31,7 @@ public class AnnouncementAdapter extends FirestoreAdapter<AnnouncementAdapter.Vi
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        return new ViewHolder(inflater.inflate(R.layout.card_news, parent, false));
+        return new ViewHolder(inflater.inflate(R.layout.card_announcement, parent, false));
     }
 
     @Override
@@ -40,14 +40,13 @@ public class AnnouncementAdapter extends FirestoreAdapter<AnnouncementAdapter.Vi
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvTitle, tvDate, tvReadMore;
+        private TextView tvTitle, tvDate;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tvTitle = itemView.findViewById(R.id.rv_news_tv_title);
             tvDate = itemView.findViewById(R.id.rv_news_tv_date);
-            tvReadMore = itemView.findViewById(R.id.rv_news_tv_read_more);
 
             itemView.setOnClickListener(v -> {
 
@@ -55,16 +54,11 @@ public class AnnouncementAdapter extends FirestoreAdapter<AnnouncementAdapter.Vi
         }
 
         public void bind(final DocumentSnapshot snapshot, final OnNewsSelectedListener listener) {
-            News news = snapshot.toObject(News.class);
+            Announcement announcement = snapshot.toObject(Announcement.class);
 
-            SimpleDateFormat sdf = new SimpleDateFormat("dd MM yyyy");
-            tvTitle.setText(news.getTitle());
-            tvDate.setText(news.getDate_created().toString());
-            tvReadMore.setOnClickListener(v -> {
-                if (listener != null) {
-                    listener.OnNewsSelected(snapshot);
-                }
-            });
+            SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy");
+            tvTitle.setText(announcement.getTitle());
+            tvDate.setText("Posted on " + sdf.format(announcement.getDate_created()));
         }
     }
 }
